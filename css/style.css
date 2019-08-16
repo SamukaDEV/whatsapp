@@ -14,13 +14,30 @@
 	background: rgba(0, 0, 0, 0.3);
 }
 
+*{
+	cursor: default;
+	user-select: none;
+}
+
+input, textarea{
+	cursor: text;
+}
+a{
+	cursor: pointer;
+}
+
+.cursor-default{
+	cursor: default;
+}
+
 #main-container {
 	width: 100vw;
 	height: 100vh;
 }
 
 #navbar {
-	background: #009688;
+	/*background: #009688;*/
+	background: #3fbbc7; 
 }
 
 .dropdown-toggle::after {
@@ -61,11 +78,16 @@
 }
 
 #message-area {
-	border-left: 1px solid white;
+	border-left: 1px solid #dee2e6;
 }
 
 #message-area .overlay {
 	background: hsl(0, 0%, 80%);
+	background: #f8f9fb; 
+	/*background-image: url('../images/whatsapp_overlay.jpg');*/
+	background: #e6e4e4;
+	background-position: 50% 30%;
+	background-repeat: no-repeat;
 }
 
 #input-area {
@@ -138,3 +160,46 @@
 	left: 0;
 	z-index: 99;
 }
+
+i.emojis{
+	font-size: 30px;
+	margin: 3px 10px;
+	cursor: pointer;
+	color: #a5a5a5;
+}
+i.sender{
+	font-size: 30px;
+	margin: 3px 10px;
+	cursor: pointer;
+	color: #a5a5a5;
+}
+.rcm-icons a i.rotat{
+	transform: rotatez(40deg) rotateX(5deg) rotateY(15deg);
+}
+.rcm-icons a i{
+	color: white;
+  font-size: 28px;
+  padding: 5px;
+  cursor: pointer;
+}
+.last-message i{
+	font-size: 17px;
+	position: relative;
+	top: 3px;
+}
+i.material-icons.grtt{
+	color: #3fbbc7;
+}
+.message-item i.material-icons{
+	font-size: 17px;
+	position: relative;
+	top: 3px;
+}
+.message-item .time {
+  position: relative;
+  right: 5px;
+}
+.msg-lot-date{
+	background: #91a8ab;
+}
+/*BOOTSTRAP ITEMS EDIT*/

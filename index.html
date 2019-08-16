@@ -4,10 +4,11 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-	<title>Whatsapp</title>
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+	<title>Chat</title>
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" type="text/css" href="css/material-icons.css">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
-	<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -21,13 +22,17 @@
 					<img alt="Profile Photo" class="img-fluid rounded-circle mr-2" style="height:50px; cursor:pointer;" onclick="showProfileSettings()" id="display-pic">
 					<div class="text-white font-weight-bold" id="username"></div>
 					<div class="nav-item dropdown ml-auto">
-						<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="fas fa-ellipsis-v text-white"></i></a>
+						<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+							<!-- <i class="fas fa-ellipsis-v text-white"></i> -->
+							<i class="material-icons text-light" style="font-size: 28px;position: relative; top: 4px;">more_vert</i>
+						</a>
 						<div class="dropdown-menu dropdown-menu-right">
-							<a class="dropdown-item" href="#">New Group</a>
+							<a class="dropdown-item" href="#">New group</a>
+							<a class="dropdown-item" href="#" onclick="showProfileSettings()">Profile</a>
 							<a class="dropdown-item" href="#">Archived</a>
-							<a class="dropdown-item" href="#">Starred</a>
+							<a class="dropdown-item" href="#">Favorits</a>
 							<a class="dropdown-item" href="#">Settings</a>
-							<a class="dropdown-item" href="#">Log Out</a>
+							<a class="dropdown-item" href="#">Log out</a>
 						</div>
 					</div>
 				</div>
@@ -37,23 +42,24 @@
 
 				<!-- Profile Settings -->
 				<div class="d-flex flex-column w-100 h-100" id="profile-settings">
-					<div class="row d-flex flex-row align-items-center p-2 m-0" style="background:#009688; min-height:65px;">
-						<i class="fas fa-arrow-left p-2 mx-3 my-1 text-white" style="font-size: 1.5rem; cursor: pointer;" onclick="hideProfileSettings()"></i>
-						<div class="text-white font-weight-bold">Profile</div>
+					<div class="row d-flex flex-row align-items-center p-2 m-0" style="background:#3fbbc7; min-height:65px;">
+						<!-- <i class="fas fa-arrow-left p-2 mx-3 my-1 text-white" style="font-size: 1.5rem; cursor: pointer;" onclick="hideProfileSettings()"></i> -->
+						<i class="material-icons cursor-default mr-3 text-light" onclick="hideProfileSettings()">arrow_back</i>
+						<div class="text-white font-weight-bold">Perfil</div>
 					</div>
 					<div class="d-flex flex-column" style="overflow:auto;">
 						<img alt="Profile Photo" class="img-fluid rounded-circle my-5 justify-self-center mx-auto" id="profile-pic">
 						<input type="file" id="profile-pic-input" class="d-none">
 						<div class="bg-white px-3 py-2">
 							<div class="text-muted mb-2"><label for="input-name">Your Name</label></div>
-							<input type="text" name="name" id="input-name" class="w-100 border-0 py-2 profile-input">
+							<input type="text" name="name" id="input-name" class="w-100 border-0 py-2 profile-input" autocomplete="off">
 						</div>
 						<div class="text-muted p-3 small">
 							This is not your username or pin. This name will be visible to your WhatsApp contacts.
 						</div>
 						<div class="bg-white px-3 py-2">
-							<div class="text-muted mb-2"><label for="input-about">About</label></div>
-							<input type="text" name="name" id="input-about" value="" class="w-100 border-0 py-2 profile-input">
+							<div class="text-muted mb-2"><label for="input-about">Status</label></div>
+							<input type="text" name="name" id="input-about" value="" class="w-100 border-0 py-2 profile-input" autocomplete="off">
 						</div>
 					</div>
 					
@@ -62,7 +68,19 @@
 
 			<!-- Message Area -->
 			<div class="d-none d-sm-flex flex-column col-12 col-sm-7 col-md-8 p-0 h-100" id="message-area">
-				<div class="w-100 h-100 overlay"></div>
+				<div class="w-100 h-100 overlay">
+					
+					<div class="p-5 mt-5">
+						<p>Some news to this project that ive liked so much:</p>
+						<ol>
+							<li>New colors to all pages.</li>
+							<li>Icons updates with <a href="https://material.io/resources/icons/?icon=sentiment_satisfied_alt&style=baseline" target="blank">Material Icons</a> from <a href="https://material.io/" target="blank">Google MDL</a>.</li>
+							<li>Default avatar icons.</li>
+							<li>New classes and visual updates in style.css file.</li>
+						</ol>
+					</div>
+
+				</div>
 
 				<!-- Navbar -->
 				<div class="row d-flex flex-row align-items-center p-2 m-0 w-100" id="navbar">
@@ -74,10 +92,19 @@
 						<div class="text-white font-weight-bold" id="name"></div>
 						<div class="text-white small" id="details"></div>
 					</div>
-					<div class="d-flex flex-row align-items-center ml-auto">
-						<a href="#"><i class="fas fa-search mx-3 text-white d-none d-md-block"></i></a>
-						<a href="#"><i class="fas fa-paperclip mx-3 text-white d-none d-md-block"></i></a>
-						<a href="#"><i class="fas fa-ellipsis-v mr-2 mx-sm-3 text-white"></i></a>
+					<div class="d-flex flex-row align-items-center ml-auto rcm-icons">
+						<a href="#">
+							<!-- <i class="fas fa-search mx-3 text-white d-none d-md-block"></i> -->
+							<i class="material-icons">search</i>
+						</a>
+						<a href="#">
+							<!-- <i class="fas fa-paperclip mx-3 text-white d-none d-md-block"></i> -->
+							<i class="material-icons rotat">attach_file</i>
+						</a>
+						<a href="#">
+							<!-- <i class="fas fa-ellipsis-v mr-2 mx-sm-3 text-white"></i> -->
+							<i class="material-icons">more_vert</i>
+						</a>
 					</div>
 				</div>
 
@@ -85,24 +112,31 @@
 				<div class="d-flex flex-column" id="messages"></div>
 
 				<!-- Input -->
-				<div class="d-none justify-self-end align-items-center flex-row" id="input-area">
-					<a href="#"><i class="far fa-smile text-muted px-3" style="font-size:1.5rem;"></i></a>
-					<input type="text" name="message" id="input" placeholder="Type a message" class="flex-grow-1 border-0 px-3 py-2 my-3 rounded shadow-sm">
-					<i class="fas fa-paper-plane text-muted px-3" style="cursor:pointer;" onclick="sendMessage()"></i>
-				</div>
+				<form autocomplete="off">
+					<div class="d-none justify-self-end align-items-center flex-row" id="input-area">
+						<!-- <a href="#"> -->
+							<!-- <i class="far fa-smile text-muted px-3" style="font-size:1.5rem;"></i> -->
+							<i class="material-icons emojis">sentiment_satisfied_alt</i>
+						<!-- </a> -->
+						<input type="text" name="message" id="input" placeholder="Type a message" class="flex-grow-1 border-0 px-3 py-2 my-3 rounded shadow-sm">
+						<!-- <i class="fas fa-paper-plane text-muted px-3" style="cursor:pointer;" onclick="sendMessage()"></i> -->
+						<i class="material-icons sender" onclick="sendMessage()">send</i>
+					</div>
+				</form>
 			</div>
 		</div>
 	</div>
 
-	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-	    crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
-	    crossorigin="anonymous"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
-		crossorigin="anonymous"></script>
-	<script src="datastore.js"></script>
-	<script src="date-utils.js"></script>
-	<script src="script.js"></script>
+	<script src="js/jquery-3.4.1.min.js"></script>
+	<script src="js/popper.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/datastore.js"></script>
+	<script src="js/date-utils.js"></script>
+	<script src="js/script.js"></script>
+
+	<script>
+		// showProfileSettings()
+	</script>
 </body>
 
 </html>

@@ -100,7 +100,11 @@ let viewChatList = () => {
 	chatList
 	.sort((a, b) => mDate(b.msg.time).subtract(a.msg.time))
 	.forEach((elem, index) => {
-		let statusClass = elem.msg.status < 2 ? "far" : "fas";
+		// fas = readed && far = not readed
+		// let statusClass = elem.msg.status < 2 ? "far" : "fas";
+		statusClass = elem.msg.status < 2 ? 'lest' : 'grtt';
+		// statusClass += ' fa-check-circle ';
+		statusClass += ' material-icons ';
 		let unreadClass = elem.unread ? "unread" : "";
 
 		DOM.chatList.innerHTML += `
@@ -108,7 +112,7 @@ let viewChatList = () => {
 			<img src="${elem.isGroup ? elem.group.pic : elem.contact.pic}" alt="Profile Photo" class="img-fluid rounded-circle mr-2" style="height:50px;">
 			<div class="w-50">
 				<div class="name">${elem.name}</div>
-				<div class="small last-message">${elem.isGroup ? contactList.find(contact => contact.id === elem.msg.sender).number + ": " : ""}${elem.msg.sender === user.id ? "<i class=\"" + statusClass + " fa-check-circle mr-1\"></i>" : ""} ${elem.msg.body}</div>
+				<div class="small last-message">${elem.isGroup ? contactList.find(contact => contact.id === elem.msg.sender).number + ": " : ""}${elem.msg.sender === user.id ? "<i class=\"" + statusClass + " mr-1\">done_all</i>" : ""} ${elem.msg.body}</div>
 			</div>
 			<div class="flex-grow-1 text-right">
 				<div class="small time">${mDate(elem.msg.time).chatListFormat()}</div>
@@ -126,7 +130,7 @@ let generateChatList = () => {
 
 let addDateToMessageArea = (date) => {
 	DOM.messages.innerHTML += `
-	<div class="mx-auto my-2 bg-primary text-white small py-1 px-2 rounded">
+	<div class="msg-lot-date mx-auto my-2 text-white small py-1 px-2 rounded">
 		${date}
 	</div>
 	`;
@@ -145,7 +149,8 @@ let addMessageToMessageArea = (msg) => {
 	</div>
 	`;
 
-	let sendStatus = `<i class="${msg.status < 2 ? "far" : "fas"} fa-check-circle"></i>`;
+	// let sendStatus = `<i class="${msg.status < 2 ? "far" : "fas"} fa-check-circle"></i>`;
+	sendStatus = `<i class="${msg.status < 2 ? "lest" : "grtt"} material-icons">done_all</i>`;
 
 	DOM.messages.innerHTML += `
 	<div class="align-self-${msg.sender === user.id ? "end self" : "start"} p-1 my-1 mx-3 rounded bg-white shadow-sm message-item">
@@ -215,6 +220,9 @@ let generateMessageArea = (elem, chatIndex) => {
 	msgs
 	.sort((a, b) => mDate(a.time).subtract(b.time))
 	.forEach((msg) => addMessageToMessageArea(msg));
+
+	// Focus in textarea
+	$('#input').focus();
 };
 
 let showChatList = () => {

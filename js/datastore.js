@@ -1,9 +1,14 @@
 
+// var default_pic = 'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png';
+var default_pic = 'images/avatar_1.jpg';
+
 let user = {
 	id: 0,
-	name: "Anish",
+	name: "Username",
 	number: "+91 91231 40293",
-	pic: "images/asdsd12f34ASd231.png"
+	// pic: "images/asdsd12f34ASd231.png"
+	// pic: 'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png'
+	pic: 'images/avatar_1.jpg'
 };
 
 let contactList = [
@@ -11,35 +16,35 @@ let contactList = [
 		id: 0,
 		name: "Anish",
 		number: "+91 91231 40293",
-		pic: "images/asdsd12f34ASd231.png",
+		pic: default_pic,
 		lastSeen: "Apr 29 2018 17:58:02"
 	},
 	{
 		id: 1,
 		name: "Nitin",
 		number: "+91 98232 37261",
-		pic: "images/Ass09123asdj9dk0qw.jpg",
+		pic: default_pic,
 		lastSeen: "Apr 28 2018 22:18:21"
 	},
 	{
 		id: 2,
 		name: "Sanjay",
 		number: "+91 72631 2937",
-		pic: "images/asd1232ASdas123a.png",
+		pic: default_pic,
 		lastSeen: "Apr 28 2018 19:23:16"
 	},
 	{
 		id: 3,
 		name: "Suvro Mobile",
 		number: "+91 98232 63547",
-		pic: "images/Alsdk120asdj913jk.jpg",
+		pic: default_pic,
 		lastSeen: "Apr 29 2018 11:16:42"
 	},
 	{
 		id: 4,
 		name: "Dee",
 		number: "+91 72781 38213",
-		pic: "images/dsaad212312aGEA12ew.png",
+		pic: default_pic,
 		lastSeen: "Apr 27 2018 17:28:10"
 	}
 ];
@@ -49,7 +54,7 @@ let groupList = [
 		id: 1,
 		name: "Programmers",
 		members: [0, 1, 3],
-		pic: "images/0923102932_aPRkoW.jpg"
+		pic: default_pic
 	},
 	{
 		id: 2,
@@ -59,8 +64,8 @@ let groupList = [
 	},
 	{
 		id: 3,
-		name: "notes",
-		members: [0],
+		name: "Notes",
+		members: [0, 1, 3],
 		pic: "images/8230192232_asdEWq2.png"
 	}
 ];

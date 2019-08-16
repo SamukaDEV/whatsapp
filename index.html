@@ -4,11 +4,13 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+	<link rel="icon" href="images/favicon.ico">
 	<title>Chat</title>
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" type="text/css" href="css/snacktoast.css">
 	<link rel="stylesheet" type="text/css" href="css/material-icons.css">
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
+	<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous"> -->
 </head>
 
 <body>
@@ -32,7 +34,7 @@
 							<a class="dropdown-item" href="#">Archived</a>
 							<a class="dropdown-item" href="#">Favorits</a>
 							<a class="dropdown-item" href="#">Settings</a>
-							<a class="dropdown-item" href="#">Log out</a>
+							<a class="dropdown-item" href="#" onclick="logout()">Log out</a>
 						</div>
 					</div>
 				</div>
@@ -62,32 +64,68 @@
 							<input type="text" name="name" id="input-about" value="" class="w-100 border-0 py-2 profile-input" autocomplete="off">
 						</div>
 					</div>
-					
-				</div>
+				</div> <!-- END PROFILE SETTINGS -->
+
+				<!-- START LOGIN DEMO -->
+				<div class="d-flex flex-column w-100 h-100" id="left-login">
+					<div class="row d-flex flex-row align-items-center p-2 m-0" style="background:#3fbbc7; min-height:65px;">
+						<!-- <i class="fas fa-arrow-left p-2 mx-3 my-1 text-white" style="font-size: 1.5rem; cursor: pointer;" onclick="hideProfileSettings()"></i> -->
+						<!-- <i class="material-icons cursor-default mr-3 text-light" onclick="hideProfileSettings()">arrow_back</i> -->
+						<div class="text-white font-weight-bold ml-2">Login Area</div>
+					</div>
+					<form autocomplete="off">
+					<div class="d-flex flex-column" style="overflow:auto;">
+						<!-- <img src="images/avatar_1.jpg" alt="Profile Photo" class="img-fluid rounded-circle my-3 justify-self-center mx-auto" id="profile-pic"> -->
+						<input type="file" id="profile-pic-input" class="d-none">
+						<div class="bg-white px-3 py-2 mt-5">
+							<div class="text-muted mb-0"><label for="input-email">EMail</label></div>
+							<input type="text" name="" id="input-email" class="w-100 border-0 py-0 profile-input" autofocus>
+						</div>
+						<!-- <div class="text-muted p-3 small">
+							This is not your username or pin. This name will be visible to your WhatsApp contacts.
+						</div> -->
+						<div class="bg-white px-3 py-2">
+							<div class="text-muted mb-0"><label for="input-pass">Password</label></div>
+							<input type="password" name="" id="input-pass" value="" class="w-100 border-0 py-0 profile-input" autocomplete="off">
+						</div>
+						<div class="bg-white px-3 py-2">
+							<div class="mt-3">
+								<input type="checkbox" name="" id="input-keep" class="mr-2">
+								<label for="input-keep">Keep me logged</label>
+								<input type="button" id="SignIn" class="btn g-btn text-light btn-block mt-2" value="Sign in">
+							</div>
+						</div>
+					</div>
+					</form>
+				</div> <!-- END LEFT LOGIN -->
 			</div>
 
 			<!-- Message Area -->
 			<div class="d-none d-sm-flex flex-column col-12 col-sm-7 col-md-8 p-0 h-100" id="message-area">
 				<div class="w-100 h-100 overlay">
 					
-					<div class="p-5 mt-5">
-						<p>Some news to this project that ive liked so much:</p>
+					<div class="p-5">
+						<h5 class="mb-4">Updates</h5>
 						<ol>
-							<li>New colors to all pages.</li>
-							<li>Icons updates with <a href="https://material.io/resources/icons/?icon=sentiment_satisfied_alt&style=baseline" target="blank">Material Icons</a> from <a href="https://material.io/" target="blank">Google MDL</a>.</li>
-							<li>Default avatar icons.</li>
-							<li>New classes and visual updates in style.css file.</li>
+							<li>Icons updates with <a href="https://material.io/resources/icons/?icon=sentiment_satisfied_alt&style=baseline" target="blank">Material Icons</a> from <a href="https://material.io/" target="blank">Google MDL</a></li>
+							<li>A Default profile picture</li>
+							<li>New classes and visual updates in Stylesheet, messages bubble(group: title number, time label)</li>
+							<li>Updates in Date tratments, like current day will apear "today" inside the chat</li>
+							<li>New animations in Dropdowns</li>
+							<li><b>Send messages when hit ENTER</b></li>
+							<li>New forms</li>
+							<li class="mt-3 text-muted">Obvious, but not forgotten, the new colors...  haha!</li>
 						</ol>
 					</div>
 
 				</div>
 
 				<!-- Navbar -->
-				<div class="row d-flex flex-row align-items-center p-2 m-0 w-100" id="navbar">
+				<div class="row d-flex flex-row align-items-center p-2 pl-3 m-0 w-100" id="navbar">
 					<div class="d-block d-sm-none">
 						<i class="fas fa-arrow-left p-2 mr-2 text-white" style="font-size: 1.5rem; cursor: pointer;" onclick="showChatList()"></i>
 					</div>
-					<a href="#"><img src="https://via.placeholder.com/400x400" alt="Profile Photo" class="img-fluid rounded-circle mr-2" style="height:50px;" id="pic"></a>
+					<a href="#"><img src="images/avatar_1.jpg" alt="Profile Photo" class="img-fluid rounded-circle mr-2" style="height:50px;" id="pic"></a>
 					<div class="d-flex flex-column">
 						<div class="text-white font-weight-bold" id="name"></div>
 						<div class="text-white small" id="details"></div>
@@ -101,10 +139,20 @@
 							<!-- <i class="fas fa-paperclip mx-3 text-white d-none d-md-block"></i> -->
 							<i class="material-icons rotat">attach_file</i>
 						</a>
-						<a href="#">
-							<!-- <i class="fas fa-ellipsis-v mr-2 mx-sm-3 text-white"></i> -->
-							<i class="material-icons">more_vert</i>
-						</a>
+						<div class="nav-item dropdown ml-auto">
+							<a class="nav-link dropdown-toggle p-0" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+								<!-- <i class="fas fa-ellipsis-v mr-2 mx-sm-3 text-white"></i> -->
+								<i class="material-icons text-light" style="font-size: 28px;">more_vert</i>
+							</a>
+							<div class="dropdown-menu dropdown-menu-right">
+								<a class="dropdown-item" href="#">Dados de contato</a>
+								<a class="dropdown-item" href="#">Selecionar mensagens</a>
+								<a class="dropdown-item" href="#">Silenciar</a>
+								<a class="dropdown-item" href="#">Limpar mensagens</a>
+								<a class="dropdown-item" href="#">Apagar conversa</a>
+								<a class="dropdown-item" href="#" onclick="showOverlay()">Fechar</a>
+							</div>
+						</div>
 					</div>
 				</div>
 
@@ -127,16 +175,17 @@
 		</div>
 	</div>
 
+	<div id="snackbar"></div>
+
 	<script src="js/jquery-3.4.1.min.js"></script>
+	<script src="js/socket.io.js"></script>
 	<script src="js/popper.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/datastore.js"></script>
 	<script src="js/date-utils.js"></script>
 	<script src="js/script.js"></script>
+	<script src="js/client.js"></script>
 
-	<script>
-		// showProfileSettings()
-	</script>
 </body>
 
 </html>

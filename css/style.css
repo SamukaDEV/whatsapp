@@ -1,6 +1,7 @@
 
 ::-webkit-scrollbar {
-	width: 10px;
+	width: 5px;
+	opacity: 0.3;
 }
 
 ::-webkit-scrollbar-track {
@@ -24,6 +25,9 @@ input, textarea{
 }
 a{
 	cursor: pointer;
+}
+input[type=checkbox]{
+	cursor: default;
 }
 
 .cursor-default{
@@ -86,6 +90,7 @@ a{
 	background: #f8f9fb; 
 	/*background-image: url('../images/whatsapp_overlay.jpg');*/
 	background: #e6e4e4;
+	background: #f9f9f9;
 	background-position: 50% 30%;
 	background-repeat: no-repeat;
 }
@@ -118,6 +123,9 @@ a{
 	-moz-transition: all .2s ease-in-out;
 	-webkit-transition: all .2s ease-in-out;
 }
+.message-item .body{
+	font-size: 13px;
+}
 .message-item:hover .options {
 	opacity: 1;
 	right: 0;
@@ -127,9 +135,10 @@ a{
 	flex: 1!important;
 	background: hsl(0, 0%, 80%);
 	overflow: auto;
+	padding-bottom: 20px;
 }
 
-#profile-settings {
+#profile-settings, #left-login {
 	position: absolute;
 	top: 0;
 	left: -110%;
@@ -139,6 +148,11 @@ a{
 	-webkit-transition: all .2s ease-in-out;
 }
 
+#left-login{
+	left: 0px;
+	background: white;
+}
+
 #profile-pic {
 	cursor: pointer;
 	position: relative;
@@ -146,8 +160,9 @@ a{
 }
 
 .profile-input {
-	border-bottom: 2px solid transparent  !important;
+	/*border-bottom: 2px solid transparent  !important;*/
 	outline: none;
+	border-bottom: 2px solid lightgray !important;
 }
 
 .profile-input:focus {
@@ -201,5 +216,11 @@ i.material-icons.grtt{
 }
 .msg-lot-date{
 	background: #91a8ab;
+}
+.g-btn{
+	border-radius: 1px;
+	background: #3fbbc7;
+	outline: none !important;
+	box-shadow: none !important;
 }
 /*BOOTSTRAP ITEMS EDIT*/

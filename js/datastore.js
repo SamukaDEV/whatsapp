@@ -4,7 +4,7 @@ var default_pic = 'images/avatar_1.jpg';
 
 let user = {
 	id: 0,
-	name: "Username",
+	name: "Samuel Torres",
 	number: "+91 91231 40293",
 	// pic: "images/asdsd12f34ASd231.png"
 	// pic: 'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png'
@@ -12,13 +12,7 @@ let user = {
 };
 
 let contactList = [
-	{
-		id: 0,
-		name: "Anish",
-		number: "+91 91231 40293",
-		pic: default_pic,
-		lastSeen: "Apr 29 2018 17:58:02"
-	},
+	user,
 	{
 		id: 1,
 		name: "Nitin",
@@ -46,6 +40,13 @@ let contactList = [
 		number: "+91 72781 38213",
 		pic: default_pic,
 		lastSeen: "Apr 27 2018 17:28:10"
+	},
+	{
+		id: 5,
+		name: "Samuka",
+		number: "+91 72781 38764",
+		pic: default_pic,
+		lastSeen: "Apr 27 2018 17:28:10"
 	}
 ];
 
@@ -59,14 +60,14 @@ let groupList = [
 	{
 		id: 2,
 		name: "Web Developers",
-		members: [0, 2],
-		pic: "images/1921231232_Ag1asE.png"
+		members: [0, 2, 3, 4, 5],
+		pic: default_pic
 	},
 	{
 		id: 3,
 		name: "Notes",
 		members: [0, 1, 3],
-		pic: "images/8230192232_asdEWq2.png"
+		pic: default_pic
 	}
 ];
 
@@ -75,11 +76,56 @@ let groupList = [
 let messages = [
 	{
 		id: 0,
-		sender: 2,
+		sender: 5,
 		body: "where are you, buddy?",
-		time: "April 25, 2018 13:21:03",
+		time: "August 15, 2019 13:21:03",
 		status: 2,
 		recvId: 0,
+		recvIsGroup: false
+	},
+	{
+		id: 0,
+		sender: 2,
+		body: "where are you, buddy?",
+		time: "August 15, 2019 13:21:03",
+		status: 2,
+		recvId: 0,
+		recvIsGroup: false
+	},
+	{
+		id: 0,
+		sender: 0,
+		body: "where are you, buddy?",
+		time: "August 15, 2019 13:21:03",
+		status: 3,
+		recvId: 2,
+		recvIsGroup: false
+	},
+	{
+		id: 0,
+		sender: 0,
+		body: "HAHAHAHA",
+		time: "August 15, 2019 13:21:03",
+		status: 3,
+		recvId: 2,
+		recvIsGroup: false
+	},
+	{
+		id: 0,
+		sender: 0,
+		body: "Some other text message",
+		time: "August 15, 2019 13:21:03",
+		status: 3,
+		recvId: 2,
+		recvIsGroup: false
+	},
+	{
+		id: 0,
+		sender: 0,
+		body: "Content extra large to test the message box, something wrong here? i think so not! Congrats, but ill stay testing, to find some bug to fix, haha, this is so funny",
+		time: "August 16, 2019 06:21:03",
+		status: 3,
+		recvId: 2,
 		recvIsGroup: false
 	},
 	{
@@ -164,7 +210,7 @@ let messages = [
 		recvIsGroup: false
 	},
 	{
-		id: 10,
+		id: 87590,
 		sender: 0,
 		body: "if you go to the movie, then give me a call",
 		time: "April 27, 2018 22:41:55",
@@ -173,9 +219,36 @@ let messages = [
 		recvIsGroup: false
 	},
 	{
-		id: 11,
+		id: 7632745,
 		sender: 1,
 		body: "yeah, i'm online",
+		time: "April 28 2018 17:10:21",
+		status: 0,
+		recvId: 1,
+		recvIsGroup: true
+	},
+	{
+		id: 8276587,
+		sender: 0,
+		body: "yeah, i'm online",
+		time: "April 28 2018 17:10:21",
+		status: 0,
+		recvId: 3,
+		recvIsGroup: true
+	},
+	{
+		id: 87250,
+		sender: 2,
+		body: "yeah, i'm online",
+		time: "April 28 2018 17:10:21",
+		status: 0,
+		recvId: 2,
+		recvIsGroup: true
+	},
+	{
+		id: 87250,
+		sender: 0,
+		body: "Message from me",
 		time: "April 28 2018 17:10:21",
 		status: 0,
 		recvId: 1,

@@ -21,7 +21,25 @@ const DOM =  {
 	inputName: getById("input-name"),
 	username: getById("username"),
 	displayPic: getById("display-pic"),
+	leftLogin: getById('left-login'),
+	login_Email: getById('input-email'),
+	login_Password: getById('input-pass'),
+	login_Signin: getById('SignIn'),
+	toast: getById('snackbar')
 };
+
+let showToast = (content)=>{
+	let snack = DOM.toast;
+	snack.innerText = content;
+  snack.className = "show";
+  setTimeout(function(){
+  	snack.className = snack.className.replace("show", ""); 
+  }, 3000);
+}
+
+let showOverlay = () => {
+	$('.overlay').removeClass('d-none');
+}
 
 let mClassList = (element) => {
 	return {
@@ -115,7 +133,7 @@ let viewChatList = () => {
 				<div class="small last-message">${elem.isGroup ? contactList.find(contact => contact.id === elem.msg.sender).number + ": " : ""}${elem.msg.sender === user.id ? "<i class=\"" + statusClass + " mr-1\">done_all</i>" : ""} ${elem.msg.body}</div>
 			</div>
 			<div class="flex-grow-1 text-right">
-				<div class="small time">${mDate(elem.msg.time).chatListFormat()}</div>
+				<div class="small time text-muted">${mDate(elem.msg.time).chatListFormat()}</div>
 				${elem.unread ? "<div class=\"badge badge-success badge-pill small\" id=\"unread-count\">" + elem.unread + "</div>" : ""}
 			</div>
 		</div>
@@ -129,9 +147,14 @@ let generateChatList = () => {
 };
 
 let addDateToMessageArea = (date) => {
+	let d = date;
+	let tdy = mDate(new Date()).getDate();
+	if(date == tdy){
+		d = 'Today';
+	}
 	DOM.messages.innerHTML += `
 	<div class="msg-lot-date mx-auto my-2 text-white small py-1 px-2 rounded">
-		${date}
+		${d}
 	</div>
 	`;
 };
@@ -143,15 +166,20 @@ let addMessageToMessageArea = (msg) => {
 		lastDate = msgDate;
 	}
 
+	let contact_n = contactList.find(contact => contact.id === msg.sender).number;
+	if(msg.sender === user.id){
+		contact_n = 'Me';
+	}
 	let htmlForGroup = `
-	<div class="small font-weight-bold text-primary">
-		${contactList.find(contact => contact.id === msg.sender).number}
+	<div class="small font-weight-bold text-primary ml-1 mr-1">
+		${contact_n}
 	</div>
 	`;
 
 	// let sendStatus = `<i class="${msg.status < 2 ? "far" : "fas"} fa-check-circle"></i>`;
 	sendStatus = `<i class="${msg.status < 2 ? "lest" : "grtt"} material-icons">done_all</i>`;
-
+	// msg.body = msg.body.replace(/</g, "&lt");
+	// msg.body = msg.body.replace(/>/g, "&gt");
 	DOM.messages.innerHTML += `
 	<div class="align-self-${msg.sender === user.id ? "end self" : "start"} p-1 my-1 mx-3 rounded bg-white shadow-sm message-item">
 		<div class="options">
@@ -263,6 +291,21 @@ let hideProfileSettings = () => {
 	DOM.username.innerHTML = user.name;
 };
 
+let showLeftLogin = () =>{
+	DOM.leftLogin.style.left = 0;
+	// DOM.inputName.value = '';
+};
+// showLeftLogin();
+
+let hideLeftLogin = () => {
+	DOM.leftLogin.style.left = "-110%";
+}
+
+let logout = () => {
+	showLeftLogin();
+	client.emit('AUTH_LOGOUT', {token: localStorage.token});
+}
+
 window.addEventListener("resize", e => {
 	if (window.innerWidth > 575) showChatList();
 });
@@ -274,9 +317,28 @@ let init = () => {
 	DOM.profilePic.addEventListener("click", () => DOM.profilePicInput.click());
 	DOM.profilePicInput.addEventListener("change", () => console.log(DOM.profilePicInput.files[0]));
 	DOM.inputName.addEventListener("blur", (e) => user.name = e.target.value);
+	DOM.messageInput.addEventListener('keydown', (e)=>{
+		if(e.keyCode === 13){
+			sendMessage();
+			e.preventDefault();
+		}
+	});
+	// Trate local token
+	if(localStorage.token === undefined){
+		console.log('Token undefined');
+		showLeftLogin();
+	}
 	generateChatList();
-
-	console.log("Click the Image at top-left to open settings.");
 };
+
+// Add slideDown animation to Bootstrap dropdown when expanding.
+$('.dropdown').on('show.bs.dropdown', function() {
+  $(this).find('.dropdown-menu').first().stop(true, true).fadeIn(100);
+});
+
+// Add slideUp animation to Bootstrap dropdown when collapsing.
+$('.dropdown').on('hide.bs.dropdown', function() {
+  $(this).find('.dropdown-menu').first().stop(true, true).fadeOut(100);
+});
 
 init();

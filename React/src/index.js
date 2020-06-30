@@ -3,11 +3,16 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import MSGr from './components/MSGr';
 import * as serviceWorker from './serviceWorker';
+// import UserProvider from './providers/UserProvider';
+import UserContext from './providers/UserProvider'
 
 ReactDOM.render(
-  <React.StrictMode>
-    <MSGr />
-  </React.StrictMode>,
+  // <React.StrictMode>
+  //   <MSGr />
+  // </React.StrictMode>,
+  // <UserContext>
+    <MSGr />,
+  // </UserContext>,
   document.getElementById('root')
 );
 

@@ -7,11 +7,23 @@ export default class ChatList extends React.Component {
         this.state = {
             chats: [
                 {
-                    img: img_avatar,
+                    img: './images/B1ah.jfif',
                     username: 'Beatriz Calcagno',
-                    last_message: '<3',
+                    last_message: '❤️',
                     time: '12:59',
                     unread: 5
+                },
+                {
+                    img: 'https://gartic.com.br/imgs/mural/co/cowmari/dollynho-seu-amiguinho.png',
+                    username: 'Dollyn',
+                    time: '00:23',
+                    last_message: 'iaê man!'
+                },
+                {
+                    img: img_avatar,
+                    username: 'Username',
+                    last_message: '...',
+                    time: '13:33'
                 }
             ]
         }

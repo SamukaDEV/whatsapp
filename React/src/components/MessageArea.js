@@ -50,7 +50,7 @@ export default class MessageArea extends React.Component {
                     </div>
                 </div>
 
-                <div className="d-flex flex-column" id="messages">
+                <div className="d-flex flex-column px-5" id="messages">
                     {/* <span className="btn-group-sm down">
                         <button type="button" className="btn btn-light text-dark bmd-btn-fab">
                             <i className="material-icons">expand_more</i>

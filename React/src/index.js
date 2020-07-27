@@ -2,9 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import MSGr from './components/MSGr';
+// import Debug from './components/Debug'
 import * as serviceWorker from './serviceWorker';
 // import UserProvider from './providers/UserProvider';
-import UserContext from './providers/UserProvider'
+// import UserContext from './providers/UserProvider'
 
 ReactDOM.render(
   // <React.StrictMode>
@@ -12,6 +13,7 @@ ReactDOM.render(
   // </React.StrictMode>,
   // <UserContext>
     <MSGr />,
+    // <Debug />,
   // </UserContext>,
   document.getElementById('root')
 );

@@ -1,31 +1,34 @@
 import React from 'react'
-import img_avatar from '../imgs/avatar.jpg'
+// import img_avatar from '../imgs/avatar.jpg'
+import { FromBlob } from './ImageProcessor'
 
 export default class ChatList extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            chats: [
-                {
-                    img: './images/B1ah.jfif',
-                    username: 'Beatriz Calcagno',
-                    last_message: '❤️',
-                    time: '12:59',
-                    unread: 5
-                },
-                {
-                    img: 'https://gartic.com.br/imgs/mural/co/cowmari/dollynho-seu-amiguinho.png',
-                    username: 'Dollyn',
-                    time: '00:23',
-                    last_message: 'iaê man!'
-                },
-                {
-                    img: img_avatar,
-                    username: 'Username',
-                    last_message: '...',
-                    time: '13:33'
-                }
-            ]
+            chats: this.props.chats
+            // chats: [
+            //     {
+            //         img: './images/B1ah.jfif',
+            //         name: 'Beatriz Calcagno',
+            //         last_message: '❤️',
+            //         time: '12:59',
+            //         unread: 5
+            //     },
+            //     {
+            //         // img: 'https://gartic.com.br/imgs/mural/co/cowmari/dollynho-seu-amiguinho.png',
+            //         img: img_avatar,
+            //         name: 'Dollyn',
+            //         time: '00:23',
+            //         last_message: 'iaê man!'
+            //     },
+            //     {
+            //         img: img_avatar,
+            //         name: 'Username',
+            //         last_message: '...',
+            //         time: '13:33'
+            //     }
+            // ]
         }
         this.generateMessageArea = this.generateMessageArea.bind(this)
     }
@@ -33,19 +36,23 @@ export default class ChatList extends React.Component {
 
     }
     renderChats() {
-        return this.state.chats.map((chat, index) =>{
+        return this.props.chats.map((chat, index) => {
             let badge;
             if (chat.unread >= 1) {
                 badge = <div className="badge badge-success badge-pill small float-right" id="unread-count">{chat.unread}</div>
-            }else{
+            } else {
                 badge = <div></div>
             }
+            chat.time = '00:00'
+
+            chat.img = FromBlob(chat.img_blob)
+
             return <div key={index} className="chat-list-item d-flex flex-row w-100 p-2 border-bottom "
                 onClick={this.generateMessageArea}>
                 <img src={chat.img} alt="" className="img-fluid rounded-circle mr-2"
                     style={{ height: '50px' }} />
                 <div className="w-100 flex-row">
-                    <div className="name">{chat.username}</div>
+                    <div className="name">{chat.name}</div>
                     <div className="small last-message">{chat.last_message}</div>
                 </div>
                 <div>

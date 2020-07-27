@@ -1,6 +1,6 @@
 import React from 'react'
-
-import img_avatar from '../imgs/avatar.jpg'
+import { FromBlob } from './ImageProcessor'
+// import img_avatar from '../imgs/avatar.jpg'
 
 export default class Navbar extends React.Component {
     constructor(props) {
@@ -11,16 +11,20 @@ export default class Navbar extends React.Component {
         document.querySelector('#profile-settings').style.left = '0'
     }
     render() {
+        console.log(this.props.user)
         return (
             <div className="row d-flex align-items-center flex-row" id="navbar">
-                <img src={img_avatar} alt="" onClick={this.showProfile} id="display-pic" />
-                <div className="ml-2 text-white font-weight-bold" id="username">Username</div>
+                <img src={FromBlob(this.props.user.img_blob)} alt="" onClick={this.showProfile} id="display-pic" />
+                <div className="ml-2 text-white font-weight-bold" id="username">
+                    {this.props.user.name}
+                    <div className="font-weight-light" style={{fontSize: '12px'}}>{this.props.user.phone}</div>
+                </div>
                 <div className="dropdown ml-auto">
                     <button className="btn bmd-btn-icon dropdown-toggle text-light" type="button" id="ex1"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i className="material-icons">more_vert</i>
                     </button>
-                    <NavbarDropdown />
+                    <NavbarDropdown signOut={this.props.signOut} />
                 </div>
                 <div className="nav-item dropdown ml-auto d-none">
                     <button className="nav-link dropdown-toggle" data-toggle="dropdown"
@@ -43,7 +47,7 @@ export default class Navbar extends React.Component {
 }
 
 class NavbarDropdown extends React.Component {
-    constructor(props){
+    constructor(props) {
         super(props)
         this.state = {
             listItems: [
@@ -54,17 +58,18 @@ class NavbarDropdown extends React.Component {
                     text: 'Another Action'
                 },
                 {
-                    text: 'Logout'
+                    text: 'Logout',
+                    fn: this.props.signOut
                 }
             ],
         }
     }
-    renderItems(){
-        if(this.state.listItems.length >=1){
-            return this.state.listItems.map((item, index)=>
-            <button className="dropdown-item" onClick={item.fn} key={index}>{item.text}</button>
+    renderItems() {
+        if (this.state.listItems.length >= 1) {
+            return this.state.listItems.map((item, index) =>
+                <button className="dropdown-item" onClick={item.fn} key={index}>{item.text}</button>
             )
-        }else{
+        } else {
             return (
                 <button className="dropdown-item disabled">Empty</button>
             )

@@ -1,9 +1,10 @@
 {
-  "name": "vue-app",
+  "name": "MSGr",
   "version": "0.1.0",
   "private": true,
   "main": "api/index.js",
   "scripts": {
+    "start": "nodemon api/index.js",
     "serve": "vue-cli-service serve",
     "watch": "vue-cli-service build --watch",
     "build": "vue-cli-service build",

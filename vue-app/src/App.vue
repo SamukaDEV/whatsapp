@@ -34,7 +34,30 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
+/* SCROLL BAR STYLE */
+::-webkit-scrollbar {
+	width: 5px;
+	opacity: 0.3;
+}
+
+::-webkit-scrollbar-track {
+	background: none;
+}
+
+::-webkit-scrollbar-thumb {
+	background: rgba(0, 0, 0, 0.2);
+}
+::-webkit-scrollbar-thumb:hover {
+	background: rgba(0, 0, 0, 0.3);
+}
+
+/* RESET BORDERS AND OUTLINES FROM BOOTSTRAP */
+
+*:focus{
+  outline: none;
+}
+
 /* .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.5s;

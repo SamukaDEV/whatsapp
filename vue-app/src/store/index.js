@@ -73,6 +73,7 @@ export default new Vuex.Store({
   mutations: {
     setAuth(state, value) {
       state.auth = value
+      localStorage.setItem('auth', value)
     }
   },
   actions: {

@@ -10,7 +10,7 @@
     class="d-flex justify-content-center align-items-center vh-100"
     style="background: #dadada;user-select: none;"
   >
-    <DevTool />
+    <!-- <DevTool /> -->
     <Login v-if="isAuth == 0" />
     <router-view v-if="isAuth == 1" />
     <LoadingScreen v-if="isAuth == 2" />
@@ -20,11 +20,19 @@
 <script>
 import Login from "./components/Login";
 import LoadingScreen from "./components/LoadingScreen";
-import DevTool from "./components/DevTool";
+// import DevTool from "./components/DevTool";
 export default {
-  components: { Login, LoadingScreen, DevTool },
+  components: { Login, LoadingScreen },
   data() {
     return {};
+  },
+  mounted() {
+    let localSauth = localStorage.getItem("auth") || 0;
+    this.$store.commit("setAuth", localSauth);
+    // deny contextmenu at all
+    document.oncontextmenu = function (e) {
+      e.preventDefault();
+    };
   },
   computed: {
     isAuth() {
@@ -37,25 +45,39 @@ export default {
 <style>
 /* SCROLL BAR STYLE */
 ::-webkit-scrollbar {
-	width: 5px;
-	opacity: 0.3;
+  width: 5px;
+  /* opacity: 0.3; */
+  background: #ececec;
 }
-
 ::-webkit-scrollbar-track {
-	background: none;
+  background: none;
 }
-
 ::-webkit-scrollbar-thumb {
-	background: rgba(0, 0, 0, 0.2);
+  background: #267681;
+  border-radius: 10px;
 }
 ::-webkit-scrollbar-thumb:hover {
-	background: rgba(0, 0, 0, 0.3);
+  background: #198594;
 }
 
 /* RESET BORDERS AND OUTLINES FROM BOOTSTRAP */
 
-*:focus{
+*:focus {
   outline: none;
+}
+
+.dropdown-item:active {
+  background: #69cedc;
+}
+
+.btn:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.my-icon {
+  position: relative;
+  top: 4px;
 }
 
 /* .fade-enter-active,

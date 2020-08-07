@@ -5,14 +5,50 @@
   </div>-->
 
   <div class="parent shadow">
-    <header class="section d-flex align-items-center px-3 py-2">
-      <img src="../assets/logo.png" class="pic mr-2" />
+    <!-- <header class="section d-flex align-items-center px-3 py-2">
+      <img src="../assets/avatar_1.jpg" class="pic mr-2" />
       <div>
         <div style="font-size: 17px;font-weight: 300;">Username</div>
         <div style="font-weight: 300;">Online</div>
       </div>
-    </header>
-    <div class="left-side section">
+    </header>-->
+    <div
+      class="left-side section header d-flex align-items-center px-3 py-2 border-bottom"
+      style="border-right: 1px solid #0e5963;"
+    >
+      <img src="../assets/avatar_1.jpg" class="pic mr-2" />
+      <div>
+        <div style="font-size: 17px;font-weight: 300;">Username</div>
+        <div style="font-weight: 300; font-size: 12px;">Online</div>
+      </div>
+    </div>
+    <div
+      class="section d-flex justify-content-between align-items-center right-header px-3 py-2 border-bottom"
+    >
+      <div class="d-flex align-items-center">
+        <img src="../assets/avatar_1.jpg" class="pic mr-2" />
+        <div>
+          <div style="font-size: 17px;font-weight: 300;">Username</div>
+          <div style="font-weight: 300; font-size: 12px;">Online</div>
+        </div>
+      </div>
+      <div class="dropdown">
+        <button
+          class="btn btn-sm text-light"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+          <i class="material-icons my-icon">more_vert</i>
+        </button>
+        <div class="dropdown-menu dropdown-menu-right py-0">
+          <a href="#" class="dropdown-item">Info</a>
+          <a href="#" class="dropdown-item">Excluir</a>
+          <a href="#" class="dropdown-item">Limpar conversa</a>
+        </div>
+      </div>
+    </div>
+    <div class="left-side section" style="border-right: 1px solid #bbbbbb;">
       <div class="px-3 py-2 border-bottom">
         <input type="text" class="form-control form-control-sm" placeholder="Search" />
       </div>
@@ -23,11 +59,11 @@
           class="contact-item px-3 py-2 border-bottom"
         >
           <div class="d-flex align-items-begin">
-            <img src="../assets/logo.png" class="pic mr-2" />
+            <img src="../assets/avatar_1.jpg" class="pic mr-2" />
             <div class="w-100">
               <div class="d-flex justify-content-between">
                 Username {{contact}}
-                <span class="text-muted">00:00</span>
+                <span class="text-muted contact-time">00:00</span>
               </div>
               <div class="text-muted">Last message</div>
             </div>
@@ -56,9 +92,13 @@
           </div>
         </div>
         <div class="typer border-top p-3 d-flex justify-content-between align-items-center">
-          <button class="btn btn-sm btn-info typer-emojis">:D</button>
+          <button class="btn btn-sm typer-emojis">
+            <i class="material-icons my-icon text-muted">mood</i>
+          </button>
           <div class="typer-input w-100 mx-2 p-1" contenteditable placeholder="Type Here..."></div>
-          <button class="btn btn-sm btn-info typer-send">Send</button>
+          <button class="btn btn-sm typer-send">
+            <i class="material-icons my-icon text-muted">send</i>
+          </button>
         </div>
       </div>
     </main>
@@ -73,6 +113,17 @@
 
 export default {
   name: "Home",
+  mounted() {
+    // Now request contacts and other settings
+    this.$root.api
+      .contacts()
+      .then((list) => {
+        console.log(list);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  },
   computed: {
     contacts() {
       return this.$store.state.contacts;
@@ -88,7 +139,8 @@ export default {
 </script>
 
 <style scoped>
-[contentEditable="true"]:empty:not(:focus):before {
+/* [contentEditable="true"]:empty:not(:focus):before { */
+[contentEditable="true"]:empty:before {
   content: attr(placeholder);
   color: grey;
   /* font-style:italic; */
@@ -123,15 +175,24 @@ export default {
 }
 
 .msg .content {
-  background: #afd2d8;
+  /* background: #afd2d8; */
+  background: #c5dae2;
   border-radius: 4px;
   font-size: 14px;
   max-width: 80%;
   box-shadow: 0 0.125rem 0.25rem #ababab;
 }
 
-.msg.self .content{
-  background: #d0d0d0;
+.msg.self .content {
+  background: #ececec;
+}
+
+.msg-timer {
+  font-size: 12px;
+}
+
+.contact-time {
+  font-size: 12px;
 }
 
 .messages {
@@ -141,13 +202,13 @@ export default {
 }
 
 .contact-list {
-  height: 484px;
+  height: 483px;
   overflow: hidden;
   overflow-y: scroll;
 }
 
 .contact-item:hover {
-  background: #dde0e0;
+  background: #f5f7f9;
 }
 
 .parent {
@@ -160,18 +221,27 @@ export default {
   border-radius: 3px;
 }
 
+.header {
+  background: #267681;
+  color: white;
+}
 header {
   /* padding: 2rem; */
   grid-column: 1 / 4;
-  background: #0f4d56;
+  background: #267681;
   border-radius: 3px 3px 0px 0px;
   color: white;
   /* padding: 5px 15px; */
 }
 
+.right-header {
+  background: #267681;
+  color: white;
+}
+
 .left-side {
   grid-column: 1 / 2;
-  border-right: 1px solid #bbbbbb;
+  /* border-right: 1px solid #bbbbbb; */
   min-width: 270px;
 }
 

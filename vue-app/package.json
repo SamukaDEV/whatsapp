@@ -12,7 +12,10 @@
     "express:run": "vue-cli-service express:run"
   },
   "dependencies": {
+    "connect-mongo": "^3.2.0",
     "core-js": "^3.6.5",
+    "express-session": "^1.17.1",
+    "mongoose": "^5.9.27",
     "socket.io": "^2.3.0",
     "vue": "^2.6.11",
     "vue-router": "^3.2.0",

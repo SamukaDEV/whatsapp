@@ -5,7 +5,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    auth: false,
+    auth: 2,
     messages: []
   },
   mutations: {

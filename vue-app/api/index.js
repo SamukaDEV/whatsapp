@@ -1,5 +1,8 @@
 console.clear()
 const express = require('express')
+const session = require('express-session')
+const MongoStore = require('connect-mongo')(session)
+const mongoose = require('./db')
 const socketIO = require("socket.io")
 const path = require('path')
 const app = express()
@@ -10,17 +13,25 @@ const io = socketIO(http)
 
 app.use(express.json())
 app.use(express.static(path.join(__dirname, '../dist')))
+
+app.use(session({
+  secret: 'Smk09182309164ksjndvclk',
+  resave: false,
+  saveUninitialized: false,
+  store: new MongoStore({ mongooseConnection: mongoose.connection })
+}))
+
 // app.get('/', (req, res)=>{
-//   res.sendFile(path.join(__dirname, '../dist/index.html'))
+//   res.send(String(mongoose.connection.readyState))
 // })
 
-io.on('connection', socket=>{
-  socket.on('message', data=>{
+io.on('connection', socket => {
+  socket.on('message', data => {
     console.log(data)
   })
 })
 
-http.listen(PORT, function(){
+http.listen(PORT, function () {
   console.log(`API Listening on port ${PORT}...`)
 })
 

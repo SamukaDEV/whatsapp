@@ -32,10 +32,16 @@ export default class API {
             })
         })
     }
-    auth(email, password) {
+    Auth(email, password) {
         return this.post('/api/auth', { email: email, password: password })
     }
-    contacts(){
+    SignOut(){
+        return this.get('/api/auth/signout')
+    }
+    getUserProfile(){
+        return this.get('/api/user/profile')
+    }
+    Contacts(){
         return this.get('/api/contacts')
     }
 }

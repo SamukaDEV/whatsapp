@@ -14,10 +14,22 @@
           class="form-control form-control-sm"
           placeholder="Password"
           v-model="password"
+          @keydown="pass_keydown"
         />
       </div>
       <div class="row">
-        <div class="col-sm-6 offset-6">
+        <div class="col-6">
+          <div class="custom-control custom-switch">
+            <input
+              type="checkbox"
+              class="custom-control-input"
+              id="customSwitch1"
+              v-model="remember"
+            />
+            <label class="custom-control-label" for="customSwitch1">Remember</label>
+          </div>
+        </div>
+        <div class="col-sm-6">
           <button class="btn btn-sm btn-block btn-info" @click="auth">Sign In</button>
         </div>
       </div>
@@ -36,16 +48,33 @@ export default {
     return {
       email: "",
       password: "",
+      remember: false,
     };
   },
+  mounted() {
+    this.remember = localStorage.getItem("remember") === "true" ? true : false;
+    if (this.remember) {
+      this.email = localStorage.getItem("last");
+    }
+    if (this.email !== "" && this.remember) {
+      document.querySelector('input[type="password"]').focus();
+    }
+  },
   methods: {
+    pass_keydown(e) {
+      if (e.keyCode === 13) {
+        this.auth();
+      }
+    },
     auth() {
       this.$store.commit("setAuth", 2);
       this.$root.api
-        .auth(this.email, this.password)
+        .Auth(this.email, this.password)
         .then((data) => {
+          // console.log(data)
           if (data.auth) {
             this.$store.commit("setAuth", 1);
+            localStorage.setItem("remember", this.remember);
           } else {
             this.$store.commit("setAuth", 0);
           }

@@ -11,8 +11,9 @@ const PORT = process.env.PORT || 80
 
 const io = socketIO(http)
 
-const routeAuth = require('./auth')
-const routeContacts = require('./contacts')
+const routeAuth = require('./auth').router
+const routeContacts = require('./contacts').router
+const routeUser = require('./user').router
 
 app.use(express.json())
 app.use(express.static(path.join(__dirname, '../dist')))
@@ -26,6 +27,7 @@ app.use(session({
 
 app.use('/api/auth', routeAuth)
 app.use('/api/contacts', routeContacts)
+app.use('/api/user', routeUser)
 
 // app.get('/', (req, res)=>{
 //   res.send(String(mongoose.connection.readyState))

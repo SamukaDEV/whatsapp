@@ -13,13 +13,30 @@
       </div>
     </header>-->
     <div
-      class="left-side section header d-flex align-items-center px-3 py-2 border-bottom"
+      class="left-side section header d-flex justify-content-between align-items-center px-3 py-2 border-bottom"
       style="border-right: 1px solid #0e5963;"
     >
-      <img src="../assets/avatar_1.jpg" class="pic mr-2" />
-      <div>
-        <div style="font-size: 17px;font-weight: 300;">Username</div>
-        <div style="font-weight: 300; font-size: 12px;">Online</div>
+      <div class="d-flex align-items-center">
+        <img src="../assets/avatar_1.jpg" class="pic mr-2" />
+        <div>
+          <div style="font-size: 17px;font-weight: 300;" v-html="username"></div>
+          <div style="font-weight: 300; font-size: 12px;">online</div>
+        </div>
+      </div>
+      <div class="dropdown">
+        <button
+          class="btn btn-sm text-light"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+          <i class="material-icons my-icon">more_vert</i>
+        </button>
+        <div class="dropdown-menu py-0">
+          <a href="#" class="dropdown-item">Profile</a>
+          <a href="#" class="dropdown-item">Settings</a>
+          <a href="#" class="dropdown-item" @click="signout">Sign Out</a>
+        </div>
       </div>
     </div>
     <div
@@ -29,7 +46,7 @@
         <img src="../assets/avatar_1.jpg" class="pic mr-2" />
         <div>
           <div style="font-size: 17px;font-weight: 300;">Username</div>
-          <div style="font-weight: 300; font-size: 12px;">Online</div>
+          <div style="font-weight: 300; font-size: 12px;">online</div>
         </div>
       </div>
       <div class="dropdown">
@@ -53,8 +70,9 @@
         <input type="text" class="form-control form-control-sm" placeholder="Search" />
       </div>
       <div class="contact-list">
+        <div class="px-3 py-2 text-muted" v-if="chats.length <= 0">No chats found...</div>
         <div
-          v-for="contact in contacts"
+          v-for="contact in chats"
           :key="contact"
           class="contact-item px-3 py-2 border-bottom"
         >
@@ -114,9 +132,13 @@
 export default {
   name: "Home",
   mounted() {
-    // Now request contacts and other settings
+    // Request User profile
+    this.$root.api.getUserProfile().then((data) => {
+      this.$store.commit("setUser", data);
+    });
+    // Request Contacts
     this.$root.api
-      .contacts()
+      .Contacts()
       .then((list) => {
         console.log(list);
       })
@@ -124,7 +146,28 @@ export default {
         console.log(err);
       });
   },
+  methods: {
+    signout() {
+      this.$root.api
+        .SignOut()
+        .then((data) => {
+          console.log(data);
+          if (!data.auth) {
+            this.$store.commit("setAuth", 0);
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+  },
   computed: {
+    username() {
+      return this.$store.state.user.name;
+    },
+    chats() {
+      return this.$store.state.chats;
+    },
     contacts() {
       return this.$store.state.contacts;
     },

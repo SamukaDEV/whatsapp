@@ -6,6 +6,10 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     auth: 2,
+    user: {
+      name: 'Unknown'
+    },
+    chats: [1],
     contacts: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
     messages: [
       {
@@ -74,6 +78,11 @@ export default new Vuex.Store({
     setAuth(state, value) {
       state.auth = value
       localStorage.setItem('auth', value)
+    },
+    setUser(state, user){
+      state.user = user
+      localStorage.setItem('last', user.email)
+      localStorage.setItem('user', JSON.stringify(user))
     }
   },
   actions: {

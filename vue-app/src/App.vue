@@ -27,8 +27,11 @@ export default {
     return {};
   },
   mounted() {
-    let localSauth = localStorage.getItem("auth") || 0;
+    let localSauth = Number(localStorage.getItem("auth")) || 0;
     this.$store.commit("setAuth", localSauth);
+    if(localSauth === 1){ // get local user profile
+      this.$store.commit('setUser', JSON.parse(localStorage.getItem('user')))
+    }
     // deny contextmenu at all
     document.oncontextmenu = function (e) {
       e.preventDefault();

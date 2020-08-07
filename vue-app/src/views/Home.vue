@@ -71,11 +71,7 @@
       </div>
       <div class="contact-list">
         <div class="px-3 py-2 text-muted" v-if="chats.length <= 0">No chats found...</div>
-        <div
-          v-for="contact in chats"
-          :key="contact"
-          class="contact-item px-3 py-2 border-bottom"
-        >
+        <div v-for="contact in chats" :key="contact" class="contact-item px-3 py-2 border-bottom">
           <div class="d-flex align-items-begin">
             <img src="../assets/avatar_1.jpg" class="pic mr-2" />
             <div class="w-100">
@@ -92,8 +88,15 @@
     <main class="section">
       <div class="messages-area d-flex flex-column justify-content-end">
         <div class="messages px-3 py-2">
+          <div
+            class="d-flex justify-content-center align-items-center"
+            style="min-height: 100%;"
+            v-if="loadingMessages"
+          >
+            <div class="spinner-border text-info" role="status"></div>
+          </div>
           <div class="d-flex justify-content-center mb-2">
-            <div class="quick-tip bg-info text-white px-1">Today</div>
+            <div class="quick-tip text-white px-1">Today</div>
           </div>
           <div
             v-for="(message, index) in messages"
@@ -131,14 +134,29 @@
 
 export default {
   name: "Home",
+  data() {
+    return {
+      loadingMessages: false,
+    };
+  },
   mounted() {
+    let api = this.$root.api;
     // Request User profile
-    this.$root.api.getUserProfile().then((data) => {
+    api.getUserProfile().then((data) => {
       this.$store.commit("setUser", data);
     });
+    // Request Chats
+    api
+      .getChats()
+      .then((data) => {
+        this.$store.commit('setChats', data)
+      })
+      .catch((err) => {
+        console.log(err);
+      });
     // Request Contacts
-    this.$root.api
-      .Contacts()
+    api
+      .getContacts()
       .then((list) => {
         console.log(list);
       })
@@ -197,6 +215,7 @@ export default {
 }
 
 .quick-tip {
+  background: #8dcbd4;
   border-radius: 3px;
 }
 

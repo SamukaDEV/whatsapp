@@ -11,4 +11,8 @@ router.get('/profile', CheckAuth, (req, res) => {
     })
 })
 
+router.get('/chats', CheckAuth, (req, res) => {
+    res.json([])
+})
+
 module.exports = { router }

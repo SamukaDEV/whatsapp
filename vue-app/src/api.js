@@ -41,7 +41,10 @@ export default class API {
     getUserProfile(){
         return this.get('/api/user/profile')
     }
-    Contacts(){
+    getChats(){
+        return this.get('/api/user/chats')
+    }
+    getContacts(){
         return this.get('/api/contacts')
     }
 }

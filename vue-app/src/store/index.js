@@ -1,0 +1,20 @@
+import Vue from 'vue'
+import Vuex from 'vuex'
+
+Vue.use(Vuex)
+
+export default new Vuex.Store({
+  state: {
+    auth: false,
+    messages: []
+  },
+  mutations: {
+    setAuth(state, value) {
+      state.auth = value
+    }
+  },
+  actions: {
+  },
+  modules: {
+  }
+})

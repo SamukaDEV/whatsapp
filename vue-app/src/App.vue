@@ -11,26 +11,32 @@
     style="background: #dadada;user-select: none;"
   >
     <!-- <DevTool /> -->
-    <Login v-if="isAuth == 0" />
-    <router-view v-if="isAuth == 1" />
-    <LoadingScreen v-if="isAuth == 2" />
+    <OfflineMode v-if="this.$root.offline_mode" />
+    <div v-else>
+      <Login v-if="isAuth == 0" />
+      <router-view v-if="isAuth == 1" />
+      <LoadingScreen v-if="isAuth == 2" />
+    </div>
   </div>
 </template>
 
 <script>
 import Login from "./components/Login";
 import LoadingScreen from "./components/LoadingScreen";
+import OfflineMode from "./components/OfflineMode";
 // import DevTool from "./components/DevTool";
 export default {
-  components: { Login, LoadingScreen },
+  components: { Login, LoadingScreen, OfflineMode },
   data() {
     return {};
   },
   mounted() {
+    console.log("App.vue", this.$root.api.getVueInstance());
     let localSauth = Number(localStorage.getItem("auth")) || 0;
     this.$store.commit("setAuth", localSauth);
-    if(localSauth === 1){ // get local user profile
-      this.$store.commit('setUser', JSON.parse(localStorage.getItem('user')))
+    if (localSauth === 1) {
+      // get local user profile
+      this.$store.commit("setUser", JSON.parse(localStorage.getItem("user")));
     }
     // deny contextmenu at all
     document.oncontextmenu = function (e) {
@@ -50,7 +56,7 @@ export default {
 ::-webkit-scrollbar {
   width: 5px;
   /* opacity: 0.3; */
-  background: #ececec;
+  background: rgb(236 236 236 / 46%);
 }
 ::-webkit-scrollbar-track {
   background: none;

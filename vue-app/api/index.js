@@ -9,6 +9,8 @@ const app = express()
 const http = require('http').createServer(app)
 const PORT = process.env.PORT || 80
 
+const API_ENABLED = true
+
 const io = socketIO(http)
 
 const routeAuth = require('./auth').router
@@ -25,10 +27,11 @@ app.use(session({
   store: new MongoStore({ mongooseConnection: mongoose.connection })
 }))
 
-app.use('/api/auth', routeAuth)
-app.use('/api/contacts', routeContacts)
-app.use('/api/user', routeUser)
-
+if (API_ENABLED) {
+  app.use('/api/auth', routeAuth)
+  app.use('/api/contacts', routeContacts)
+  app.use('/api/user', routeUser)
+}
 // app.get('/', (req, res)=>{
 //   res.send(String(mongoose.connection.readyState))
 // })

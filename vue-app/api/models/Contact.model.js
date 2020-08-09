@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-let ChatModel = new mongoose.Schema({
+let ContactModel = new mongoose.Schema({
     user_id: {
         type: mongoose.SchemaTypes.ObjectId,
         required: true
@@ -12,4 +12,4 @@ let ChatModel = new mongoose.Schema({
     }
 })
 
-module.exports = mongoose.model('Chat', ChatModel)
+module.exports = mongoose.model('Contact', ContactModel)

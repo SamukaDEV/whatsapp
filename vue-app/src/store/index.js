@@ -72,10 +72,10 @@ export default new Vuex.Store({
     user: {
       name: 'Unknown'
     },
-    chats: [],
-    contacts: [],
-    messages: [],
-    _fake: FakeMessages
+    chats: [1, 2, 3],
+    contacts: [1 ,2 , 3],
+    messages: FakeMessages,
+    // _fake: FakeMessages
   },
   mutations: {
     setAuth(state, value) {

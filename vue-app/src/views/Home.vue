@@ -112,7 +112,7 @@
             </div>
           </div>
         </div>
-        <div class="typer border-top p-3 d-flex justify-content-between align-items-center">
+        <div class="typer border-top px-3 py-2 d-flex justify-content-between align-items-center">
           <button class="btn btn-sm typer-emojis">
             <i class="material-icons my-icon text-muted">mood</i>
           </button>
@@ -204,6 +204,7 @@ export default {
 [contentEditable="true"]:empty:before {
   content: attr(placeholder);
   color: grey;
+  cursor: text;
   /* font-style:italic; */
 }
 
@@ -261,6 +262,7 @@ export default {
   height: 100%;
   overflow: hidden;
   overflow-y: scroll;
+  background: #e0dad2;
 }
 
 .contact-list {
@@ -269,6 +271,9 @@ export default {
   overflow-y: scroll;
 }
 
+.contact-item{
+  cursor: pointer;
+}
 .contact-item:hover {
   background: #f5f7f9;
 }

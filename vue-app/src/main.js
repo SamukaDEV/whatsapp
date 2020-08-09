@@ -11,7 +11,16 @@ new Vue({
   store,
   data(){
     return {
-      api: new API()
+      api: new API(),
+      offline_mode: false
+    }
+  },
+  created(){
+    this.api.setVueInstance(this)
+  },
+  methods: {
+    setOfflineMode(mode){
+      this.offline_mode = mode
     }
   },
   render: h => h(App)

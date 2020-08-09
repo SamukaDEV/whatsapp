@@ -1,6 +1,5 @@
 const express = require('express')
 const UserModel = require('./models/User.model')
-const session = require('express-session')
 const router = express.Router()
 
 // Utils
@@ -32,13 +31,16 @@ router.post('/', (req, res) => {
         } else {
             res.json({ auth: false, message: 'User not found!' })
         }
-    }).catch(err => catchError)
+    }).catch(err => catchError(err))
     // res.json({})
 })
 
 // Sign Out
 router.get('/signout', (req, res) => {
     req.session.destroy(function (err) {
+        if (err) {
+            console.log(err)
+        }
         res.json({ auth: false, message: 'Logged out' })
     })
 })

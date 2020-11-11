@@ -33,7 +33,11 @@ export default class MSGr extends React.Component {
             user: {},
             currentChat: {}
         }
+        try{
         this.state.user = JSON.parse(localStorage['user'])
+        }catch(e){
+            console.log(e)
+        }
         // SocketIO Events
         io.on('auth', function (res) {
             console.log(res)
@@ -52,7 +56,7 @@ export default class MSGr extends React.Component {
         io.on('chats', function (chats) {
             console.log('Chats Received', chats)
             self.setState({
-                chats: chats
+                chats: []// chats
             })
         })
 

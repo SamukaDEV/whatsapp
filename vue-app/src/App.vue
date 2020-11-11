@@ -31,7 +31,7 @@ export default {
     return {};
   },
   mounted() {
-    console.log("App.vue", this.$root.api.getVueInstance());
+    // console.log("App.vue", this.$root.api.getVueInstance());
     let localSauth = Number(localStorage.getItem("auth")) || 0;
     this.$store.commit("setAuth", localSauth);
     if (localSauth === 1) {

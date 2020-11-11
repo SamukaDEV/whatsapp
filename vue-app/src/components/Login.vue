@@ -67,11 +67,13 @@ export default {
       }
     },
     auth() {
-      this.$store.commit("setAuth", 2);
+      this.$store.commit("setAuth", 1);
+      return
+      /* this.$store.commit("setAuth", 2);
       this.$root.api
         .Auth(this.email, this.password)
         .then((data) => {
-          // console.log(data)
+          console.log(data)
           if (data.auth) {
             this.$store.commit("setAuth", 1);
             localStorage.setItem("remember", this.remember);
@@ -81,7 +83,7 @@ export default {
         })
         .catch((err) => {
           console.log(err);
-        });
+        }); */
     },
   },
 };

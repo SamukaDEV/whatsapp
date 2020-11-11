@@ -11,6 +11,7 @@ export default class API {
         this.opts_get = {
             method: 'GET',
         }
+        this.pre = 'http://localhost:80/';
     }
     get(url) {
         let self = this
@@ -40,19 +41,19 @@ export default class API {
         })
     }
     Auth(email, password) {
-        return this.post('/api/auth', { email: email, password: password })
+        return this.post(this.pre + '/api/auth', { email: email, password: password })
     }
     SignOut() {
-        return this.get('/api/auth/signout')
+        return this.get(this.pre + '/api/auth/signout')
     }
     getUserProfile() {
-        return this.get('/api/user/profile')
+        return this.get(this.pre + '/api/user/profile')
     }
     getChats() {
-        return this.get('/api/user/chats')
+        return this.get(this.pre + '/api/user/chats')
     }
     getContacts() {
-        return this.get('/api/contacts')
+        return this.get(this.pre + '/api/contacts')
     }
     getVueInstance(){
         return this.vue_instance
